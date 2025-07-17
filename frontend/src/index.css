@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist+Sans:wght@400;500;700&family=Geist+Mono:wght@400&display=swap");
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-[#0F0F0F] text-white font-['Geist_Sans',_sans-serif];
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-['Geist_Sans',_sans-serif] font-bold;
+  }
+  code,
+  pre,
+  a[href] {
+    @apply font-['Geist_Mono',_monospace];
+  }
+  a {
+    @apply text-[#60A5FA] hover:text-[#93C5FD] transition-colors;
+  }
+  input,
+  button,
+  select,
+  label,
+  p {
+    @apply font-['Geist_Sans',_sans-serif] focus:outline-none transition-all;
+    /* @apply font-['Geist_Sans',_sans-serif] focus:outline-none focus:ring-2 focus:ring-[#60A5FA] focus:ring-opacity-50 transition-all; */
+  }
+  input::placeholder {
+    @apply font-['Geist_Sans',_sans-serif] text-gray-400;
+  }
+}
+
+@layer utilities {
+  .card {
+    @apply bg-[#1E1E1E] p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow;
+  }
+  .btn-primary {
+    @apply bg-[#60A5FA] text-white px-6 py-3 rounded-lg font-['Geist_Mono',_monospace] font-semibold hover:bg-[#3B82F6] transition-colors;
+  }
+  .btn-secondary {
+    @apply bg-transparent border border-[#4B5563] text-white px-6 py-3 rounded-lg font-['Geist_Mono',_monospace] font-semibold hover:bg-[#4B5563] transition-colors;
+  }
+  .fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  .scale-hover {
+    @apply transition-transform duration-200 hover:scale-[1.02];
+  }
+  .spinner {
+    @apply border-4 border-[#4B5563] border-t-white rounded-full w-6 h-6 animate-spin;
+  }
+  .skeleton {
+    @apply bg-[#2D2D2D] rounded animate-pulse;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* @import url("https://fonts.googleapis.com/css2?family=Geist+Sans:wght@400;500;700&family=Geist+Mono:wght@400&display=swap");
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-[#0F0F0F] text-white font-['Geist_Sans',_sans-serif];
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-['Geist_Sans',_sans-serif] font-bold;
+  }
+  code,
+  pre,
+  a[href] {
+    @apply font-['Geist_Mono',_monospace];
+  }
+  a {
+    @apply text-[#60A5FA] hover:text-[#93C5FD] transition-colors;
+  }
+  input,
+  button,
+  select {
+    @apply focus:outline-none transition-all;
+    /* @apply focus:outline-none focus:ring-2 focus:ring-[#60A5FA] focus:ring-opacity-50 transition-all; */
+/* }
+} */
+
+/* @layer utilities {
+  .card {
+    @apply bg-[#1E1E1E] p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow;
+  }
+  .btn-primary {
+    @apply bg-[#60A5FA] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#3B82F6] transition-colors;
+  }
+  .btn-secondary {
+    @apply bg-transparent border border-[#4B5563] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#4B5563] transition-colors;
+  }
+  .fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  .scale-hover {
+    @apply transition-transform duration-200 hover:scale-[1.02];
+  }
+  .spinner {
+    @apply border-4 border-[#4B5563] border-t-white rounded-full w-6 h-6 animate-spin;
+  }
+  .skeleton {
+    @apply bg-[#2D2D2D] rounded animate-pulse;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */

@@ -1,0 +1,7 @@
+node_modules/
+.env
+backend/*.json
+dist/
+build/
+
+urlshortener-483b9-firebase-adminsdk-fbsvc-5df150ebb4.json
