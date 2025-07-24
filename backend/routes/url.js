@@ -33,7 +33,7 @@ router.get("/my-urls", async (req, res) => {
   try {
     const urls = await Url.find(
       req.user ? { user_uid: req.user.uid } : { user_uid: null }
-    );
+    ).sort({ created_at: -1 });
     res.json(urls);
   } catch (error) {
     res.status(500).json({ error: "Server error" });

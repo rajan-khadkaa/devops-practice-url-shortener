@@ -48,6 +48,7 @@ const UrlForm = () => {
         setUrlCount(newCount);
         localStorage.setItem("urlCount", newCount);
       }
+      setOriginalUrl("");
     } catch (err) {
       setError(err.response?.data?.error || "Failed to shorten URL");
     } finally {
@@ -56,9 +57,9 @@ const UrlForm = () => {
   };
 
   return (
-    <div className="max-w-md w-full bg-[#2D2D2D] rounded-lg p-6 mt-6">
+    <div className="max-w-md w-full card fade-in mt-6">
       {error && (
-        <div className="bg-[#EF4444] bg-opacity-10 border border-[#EF4444] text-[#EF4444] p-4 rounded-lg mb-4 flex items-center gap-2">
+        <div className="bg-[#EF4444]/20 border border-[#EF4444] text-[#EF4444] p-4 rounded-lg mb-4 flex items-center gap-2 fade-in">
           <svg
             className="w-5 h-5"
             fill="none"
@@ -76,7 +77,7 @@ const UrlForm = () => {
         </div>
       )}
       {!user && urlCount >= 2 && (
-        <div className="bg-red-300/20 bg-opacity-10 text-red-400 p-4 rounded-lg mb-4 flex items-center gap-2">
+        <div className="bg-red-300/20 border border-red-400 text-red-400 p-4 rounded-lg mb-4 flex items-center gap-2 fade-in">
           <svg
             className="w-5 h-5"
             fill="none"
@@ -97,7 +98,7 @@ const UrlForm = () => {
         <div>
           <label
             htmlFor="url"
-            className="block text-sm font-medium mb-1 font-['Geist_Sans']"
+            className="block text-sm font-medium mb-1"
           >
             Enter URL to Shorten
           </label>
@@ -107,14 +108,14 @@ const UrlForm = () => {
             value={originalUrl}
             onChange={(e) => setOriginalUrl(e.target.value)}
             placeholder="https://example.com"
-            className="bg-[#1A1A1A] border border-gray-600 text-white px-4 py-2 rounded-lg w-full font-['Geist_Mono']"
+            className="bg-[#1A1A1A] border border-gray-600 text-white px-4 py-2 rounded-lg w-full"
             required
             disabled={(!user && urlCount >= 2) || isLoading}
           />
         </div>
         <button
           type="submit"
-          className="bg-[#3B82F6] text-white px-6 py-3 rounded-lg w-full font-semibold scale-hover flex items-center justify-center"
+          className="btn-primary w-full flex items-center justify-center scale-hover"
           disabled={(!user && urlCount >= 2) || isLoading}
         >
           {isLoading ? <div className="spinner mr-2"></div> : "Shorten URL"}
@@ -122,20 +123,20 @@ const UrlForm = () => {
       </form>
       {shortUrl && (
         <div className="mt-6 fade-in">
-          <p className="text-sm font-medium mb-2 font-['Geist_Sans']">
+          <p className="text-sm font-medium mb-2">
             Shortened URL
           </p>
           <a
             href={shortUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#3B82F6] font-['Geist_Mono'] break-all"
+            className="text-[#3B82F6] break-all font-mono"
           >
             {shortUrl}
           </a>
           <button
             onClick={() => navigator.clipboard.writeText(shortUrl)}
-            className="bg-[#2D2D2D] border border-gray-600 text-white px-6 py-2 rounded-lg mt-4 w-full font-semibold scale-hover"
+            className="btn-secondary w-full mt-4 scale-hover"
           >
             Copy URL
           </button>

@@ -1,9 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist+Sans:wght@400;500;700&family=Geist+Mono:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
 @layer base {
   body {
-    @apply bg-[#0F0F0F] text-white font-['Geist_Sans',_sans-serif];
+    @apply bg-[#0F0F0F] text-white;
+    font-family: 'Geist Sans', 'Inter', sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.08) 0%, rgba(15,15,15,1) 80%);
   }
   h1,
   h2,
@@ -11,50 +15,118 @@
   h4,
   h5,
   h6 {
-    @apply font-['Geist_Sans',_sans-serif] font-bold;
+    font-family: 'Geist Sans', sans-serif;
+    font-weight: bold;
+    letter-spacing: -0.01em;
   }
   code,
   pre,
   a[href] {
-    @apply font-['Geist_Mono',_monospace];
+    font-family: 'Geist Mono', monospace;
   }
   a {
-    @apply text-[#60A5FA] hover:text-[#93C5FD] transition-colors;
+    @apply text-[#60A5FA] hover:text-white transition-colors;
   }
   input,
   button,
   select,
   label,
   p {
-    @apply font-['Geist_Sans',_sans-serif] focus:outline-none transition-all;
-    /* @apply font-['Geist_Sans',_sans-serif] focus:outline-none focus:ring-2 focus:ring-[#60A5FA] focus:ring-opacity-50 transition-all; */
+    font-family: 'Inter', 'Geist Sans', sans-serif;
+    @apply focus:outline-none transition-all;
   }
   input::placeholder {
-    @apply font-['Geist_Sans',_sans-serif] text-gray-400;
+    font-family: 'Inter', sans-serif;
+    @apply text-gray-400;
   }
 }
 
 @layer utilities {
   .card {
-    @apply bg-[#1E1E1E] p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow;
+    @apply p-6 rounded-2xl shadow-2xl transition-shadow bg-[#18181B];
+    border: 1px solid rgba(255,255,255,0.06);
+    /* No gradients, no glow, no colored borders */
+  }
+  .url-card {
+    @apply p-6 rounded-2xl shadow-2xl transition-shadow bg-[#18181B];
+    border: 1px solid rgba(255, 255, 255, 0.158);
+    /* No gradients, no glow, no colored borders */
   }
   .btn-primary {
-    @apply bg-[#60A5FA] text-white px-6 py-3 rounded-lg font-['Geist_Mono',_monospace] font-semibold hover:bg-[#3B82F6] transition-colors;
+    @apply px-6 py-3 rounded-xl font-semibold transition-colors;
+    background: linear-gradient(90deg, #60A5FA 0%, #fff 100%);
+    color: #0F0F0F;
+    box-shadow: 0 2px 16px 0 rgba(255,255,255,0.10);
+    background-size: 200% 100%;
+    background-position: left;
+    transition: background-position 2s cubic-bezier(0.4,0,0.2,1);
+  }
+  .btn-primary:hover {
+    /* background: linear-gradient(90deg, #fff 0%, #073063 100%); */
+    background-position: right;
+    background: linear-gradient(90deg, #fff 0%, #60A5FA 100%);
+    color: #0F0F0F;
+    box-shadow: 0 4px 32px 0 rgba(255,255,255,0.18);
+    transition: background-position 2s cubic-bezier(0.4,0,0.2,1);
   }
   .btn-secondary {
-    @apply bg-transparent border border-[#4B5563] text-white px-6 py-3 rounded-lg font-['Geist_Mono',_monospace] font-semibold hover:bg-[#4B5563] transition-colors;
+    @apply bg-transparent border border-[#4B5563] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#23272e] transition-colors;
+    backdrop-filter: blur(6px);
+  }
+  .btn-danger {
+    @apply bg-transparent border border-[#4B5563] text-red-700 px-6 py-3 rounded-xl font-semibold hover:bg-[#23272e] transition-colors;
+    backdrop-filter: blur(6px);
   }
   .fade-in {
-    animation: fadeIn 0.6s ease-in-out;
+    animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
   }
   .scale-hover {
-    @apply transition-transform duration-200 hover:scale-[1.02];
+    @apply transition-transform duration-200 hover:scale-[1.03];
   }
   .spinner {
     @apply border-4 border-[#4B5563] border-t-white rounded-full w-6 h-6 animate-spin;
   }
   .skeleton {
     @apply bg-[#2D2D2D] rounded animate-pulse;
+  }
+  .spotlight-bg {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .spotlight-rect {
+    position: absolute;
+    width: 600px;
+    height: 120px;
+    border-radius: 80px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.04) 100%);
+    filter: blur(8px);
+    opacity: 0.7;
+  }
+  .spotlight-rect.left {
+    top: -40px;
+    left: -200px;
+    transform: rotate(-8deg);
+  }
+  .spotlight-rect.left.short {
+    width: 400px;
+    height: 80px;
+    top: 60px;
+    left: -100px;
+    transform: rotate(-6deg);
+  }
+  .spotlight-rect.right {
+    top: -40px;
+    right: -200px;
+    transform: rotate(8deg);
+  }
+  .spotlight-rect.right.short {
+    width: 400px;
+    height: 80px;
+    top: 60px;
+    right: -100px;
+    transform: rotate(6deg);
   }
 }
 
@@ -68,69 +140,3 @@
     transform: translateY(0);
   }
 }
-
-/* @import url("https://fonts.googleapis.com/css2?family=Geist+Sans:wght@400;500;700&family=Geist+Mono:wght@400&display=swap");
-@import "tailwindcss";
-
-@layer base {
-  body {
-    @apply bg-[#0F0F0F] text-white font-['Geist_Sans',_sans-serif];
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-['Geist_Sans',_sans-serif] font-bold;
-  }
-  code,
-  pre,
-  a[href] {
-    @apply font-['Geist_Mono',_monospace];
-  }
-  a {
-    @apply text-[#60A5FA] hover:text-[#93C5FD] transition-colors;
-  }
-  input,
-  button,
-  select {
-    @apply focus:outline-none transition-all;
-    /* @apply focus:outline-none focus:ring-2 focus:ring-[#60A5FA] focus:ring-opacity-50 transition-all; */
-/* }
-} */
-
-/* @layer utilities {
-  .card {
-    @apply bg-[#1E1E1E] p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow;
-  }
-  .btn-primary {
-    @apply bg-[#60A5FA] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#3B82F6] transition-colors;
-  }
-  .btn-secondary {
-    @apply bg-transparent border border-[#4B5563] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#4B5563] transition-colors;
-  }
-  .fade-in {
-    animation: fadeIn 0.6s ease-in-out;
-  }
-  .scale-hover {
-    @apply transition-transform duration-200 hover:scale-[1.02];
-  }
-  .spinner {
-    @apply border-4 border-[#4B5563] border-t-white rounded-full w-6 h-6 animate-spin;
-  }
-  .skeleton {
-    @apply bg-[#2D2D2D] rounded animate-pulse;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-} */
